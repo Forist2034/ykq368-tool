@@ -1,5 +1,5 @@
 [workspace]
-members = ["rf-tool", "ykq368-decoder", "ykq368-tester"]
+members = ["rf-tool", "wave-to-fst", "ykq368-decoder", "ykq368-tester"]
 resolver = "2"
 
 
