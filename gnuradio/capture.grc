@@ -57,6 +57,18 @@ blocks:
     coordinate: [328, 16.0]
     rotation: 0
     state: enabled
+- name: output
+  id: variable
+  parameters:
+    comment: ''
+    value: '"sample"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [672, 16.0]
+    rotation: 0
+    state: enabled
 - name: samp_rate
   id: variable
   parameters:
@@ -105,7 +117,7 @@ blocks:
     comment: ''
     detached: 'False'
     extra_dict: pmt.make_dict()
-    file: ''
+    file: f"{output}.complex"
     max_seg_size: '100000000'
     rel_rate: '1'
     samp_rate: samp_rate
@@ -118,7 +130,7 @@ blocks:
     bus_structure: null
     coordinate: [352, 100.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: blocks_file_sink_0
   id: blocks_file_sink
   parameters:
@@ -126,7 +138,7 @@ blocks:
     alias: ''
     append: 'False'
     comment: ''
-    file: /home/reid/gr-sample
+    file: f"{output}.bits"
     type: byte
     unbuffered: 'False'
     vlen: '1'
@@ -186,7 +198,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [576, 448.0]
+    coordinate: [776, 464.0]
     rotation: 0
     state: enabled
 - name: mmse_resampler_xx_0
@@ -204,7 +216,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [760, 472.0]
+    coordinate: [576, 456.0]
     rotation: 0
     state: enabled
 - name: qtgui_sink_x_0
@@ -789,13 +801,13 @@ blocks:
     state: enabled
 
 connections:
-- [blocks_complex_to_mag_0, '0', blocks_threshold_ff_0, '0']
+- [blocks_complex_to_mag_0, '0', mmse_resampler_xx_0, '0']
 - [blocks_complex_to_mag_0, '0', qtgui_time_sink_x_0, '0']
 - [blocks_float_to_uchar_0, '0', blocks_pack_k_bits_bb_0, '0']
 - [blocks_pack_k_bits_bb_0, '0', blocks_file_sink_0, '0']
-- [blocks_threshold_ff_0, '0', mmse_resampler_xx_0, '0']
-- [mmse_resampler_xx_0, '0', blocks_float_to_uchar_0, '0']
-- [mmse_resampler_xx_0, '0', qtgui_time_sink_x_1, '0']
+- [blocks_threshold_ff_0, '0', blocks_float_to_uchar_0, '0']
+- [blocks_threshold_ff_0, '0', qtgui_time_sink_x_1, '0']
+- [mmse_resampler_xx_0, '0', blocks_threshold_ff_0, '0']
 - [rtlsdr_source_0, '0', blocks_complex_to_mag_0, '0']
 - [rtlsdr_source_0, '0', blocks_file_meta_sink_0, '0']
 - [rtlsdr_source_0, '0', qtgui_sink_x_0, '0']
