@@ -16,7 +16,10 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
-        packages.wave-to-fst = pkgs.callPackage ./wave-to-fst { };
+        packages = {
+          wave-to-fst = pkgs.callPackage ./wave-to-fst { };
+          host-tool = pkgs.callPackage ./host { };
+        };
       }
     );
 }

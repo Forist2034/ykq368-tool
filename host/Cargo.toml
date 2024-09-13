@@ -1,0 +1,10 @@
+[workspace]
+members = ["rf-tool", "ykq368-decoder", "ykq368-tester"]
+resolver = "2"
+
+
+[workspace.dependencies]
+serialport = "4.5.0"
+serde = { version = "1.0.210", features = ["derive"] }
+
+rf-tool = { path = "rf-tool" }
